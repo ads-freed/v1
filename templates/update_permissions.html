@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Update Permissions for {{ user.username }}{% endblock %}
+{% block content %}
+  <h2>Update Permissions for {{ user.username }}</h2>
+  <form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.can_create_ticket.label }} {{ form.can_create_ticket() }}
+    </div>
+    <div class="form-group">
+      {{ form.can_view_ticket.label }} {{ form.can_view_ticket() }}
+    </div>
+    <div class="form-group">
+      {{ form.can_reply_ticket.label }} {{ form.can_reply_ticket() }}
+    </div>
+    <div class="form-group">
+      {{ form.can_edit_ticket.label }} {{ form.can_edit_ticket() }}
+    </div>
+    <div class="form-group">
+      {{ form.can_delete_ticket.label }} {{ form.can_delete_ticket() }}
+    </div>
+    <div class="form-group">
+      {{ form.submit(class="btn btn-primary") }}
+    </div>
+  </form>
+{% endblock %}
