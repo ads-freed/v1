@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+  <h2>Your Tickets</h2>
+  <a class="btn btn-success" href="{{ url_for('routes.ticket_create') }}">Create New Ticket</a>
+  <div id="ticket-list">
+    {% include 'tickets_partial.html' %}
+  </div>
+{% endblock %}
