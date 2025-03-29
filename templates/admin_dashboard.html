@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+  <h2>Admin Dashboard</h2>
+  <canvas id="ticketChart" width="400" height="200"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    $(document).ready(function() {
+      $.getJSON("{{ url_for('admin.analytics_data') }}", function(data) {
+        var ctx = document.getElementById('ticketChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: ['Open', 'In Progress', 'Closed'],
+            datasets: [{
+              data: [data.open, data.in_progress, data.closed],
+              backgroundColor: ['#f39c12', '#3498db', '#2ecc71']
+            }]
+          },
+          options: {
+            title: {
+              display: true,
+              text: 'Tickets by Status'
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <br>
+  <a href="{{ url_for('admin.audit_logs') }}" class="btn btn-info">View Audit Logs</a>
+{% endblock %}
