@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Edit Ticket{% endblock %}
+{% block content %}
+  <h2>Edit Ticket {{ ticket.ticket_number() }}</h2>
+  <form method="POST" action="">
+    <div class="form-group">
+      <label for="status">Status</label>
+      <input type="text" name="status" class="form-control" value="{{ ticket.status }}">
+    </div>
+    <div class="form-group">
+      <label for="priority">Priority</label>
+      <input type="text" name="priority" class="form-control" value="{{ ticket.priority }}">
+    </div>
+    <div class="form-group">
+      <label for="assigned_to">Assigned To (User ID)</label>
+      <input type="text" name="assigned_to" class="form-control" value="{{ ticket.assigned_to }}">
+    </div>
+    <button type="submit" class="btn btn-primary">Update Ticket</button>
+  </form>
+{% endblock %}
