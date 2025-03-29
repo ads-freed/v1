@@ -1,0 +1,28 @@
+body {
+  padding-top: 60px;
+}
+.navbar-brand {
+  font-weight: bold;
+}
+.navbar-nav .nav-link {
+  display: flex;
+  align-items: center;
+}
+.navbar-nav .nav-link i {
+  margin-right: 5px;
+}
+.badge {
+  font-size: 0.8em;
+  vertical-align: top;
+}
+@media (max-width: 576px) {
+  .container {
+    padding: 0 10px;
+  }
+  .navbar-nav .nav-link {
+    font-size: 0.9em;
+  }
+}
+.toast {
+  min-width: 250px;
+}
