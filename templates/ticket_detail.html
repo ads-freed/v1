@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Ticket Details{% endblock %}
+{% block content %}
+  <h2>{{ ticket.ticket_number() }} - {{ ticket.subject }}</h2>
+  <p><strong>Status:</strong> {{ ticket.status }}</p>
+  <p><strong>Description:</strong></p>
+  <p>{{ ticket.description }}</p>
+  <hr>
+  <h3>Replies</h3>
+  {% for reply in ticket.replies %}
+    <div class="card mb-2">
+      <div class="card-body">
+        <p>{{ reply.message }}</p>
+        {% if reply.attachment %}
+          <p>
+            <a href="{{ url_for('routes.uploaded_file', filename=reply.attachment) }}" target="_blank">
+              View Attachment
+            </a>
+          </p>
+        {% endif %}
+        <small class="text-muted">
+          By {{ reply.user_id }} on {{ reply.created_at.strftime('%Y-%m-%d %H:%M') }}
+        </small>
+      </div>
+    </div>
+  {% endfor %}
+  <hr>
+  <h3>Add a Reply</h3>
+  <form method="POST" enctype="multipart/form-data" action="{{ url_for('routes.ticket_detail', ticket_id=ticket.id) }}">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.message.label }} {{ form.message(class="form-control", rows="4") }}
+    </div>
+    <div class="form-group">
+      {{ form.attachment.label }} {{ form.attachment(class="form-control-file") }}
+    </div>
+    <div class="form-group">
+      {{ form.submit(class="btn btn-primary") }}
+    </div>
+  </form>
+{% endblock %}
